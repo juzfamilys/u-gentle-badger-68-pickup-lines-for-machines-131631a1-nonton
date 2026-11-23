@@ -21,6 +21,9 @@ def validate(line: str) -> str:
         raise ValueError("line must be a single line")
     if not 1 <= len(line) <= 200:
         raise ValueError(f"line must be 1-200 characters, got {len(line)}")
+    machine_words = ("context", "token", "window", "training", "uptime", "model", "weights")
+    if not any(word in line.lower() for word in machine_words):
+        raise ValueError("line must contain at least one machine-flavoured word")
     return line
 
 
